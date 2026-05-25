@@ -22,8 +22,12 @@ is_game_active = True
 while is_game_active:
     screen.update()
     time.sleep(0.1)
-    for segment in segments:
-        segment.forward(20)
+    
+    for seg_num in range(len(segments) - 1, 0, -1):
+        prev_seg_x = segments[seg_num - 1].xcor()
+        prev_seg_y = segments[seg_num - 1].ycor()
+        segments[seg_num].goto(prev_seg_x, prev_seg_y)
+    segments[0].forward(20)
 
 
 screen.exitonclick()
